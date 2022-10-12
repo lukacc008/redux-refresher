@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 import Cart from "./components/Cart/Cart";
@@ -10,10 +10,17 @@ function App() {
   const cart = useSelector((state) => state.cart);
 
   useEffect(() => {
-    fetch(
-      "https://react-http-6e5fd-default-rtdb.europe-west1.firebasedatabase.app/cart.json",
-      { method: "PUT", body: JSON.stringify(cart) }
-    );
+    const sendCartData = async () => {
+      const response = await fetch(
+        "https://react-http-6e5fd-default-rtdb.europe-west1.firebasedatabase.app/cart.json",
+        { method: "PUT", body: JSON.stringify(cart) });
+
+    if (!response.ok) {
+      throw new Error("Sending cart data failed!");
+    }
+
+      const responseData = await response.json();
+    };
   }, [cart]);
 
   return (
@@ -22,6 +29,6 @@ function App() {
       <Products />
     </Layout>
   );
-}
+} 
 
 export default App;
