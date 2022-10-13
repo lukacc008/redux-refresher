@@ -29,6 +29,6 @@ function App() {
       <Products />
     </Layout>
   );
-} 
+}
 
 export default App;
