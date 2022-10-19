@@ -7,7 +7,7 @@ export const fetchCartData = () => {
       const response = await fetch(
         "https://react-http-6e5fd-default-rtdb.europe-west1.firebasedatabase.app/cart.json"
       );
-
+ 
     if (!response.ok) {
         throw new Error('Could not fetch cart data!')
     }
